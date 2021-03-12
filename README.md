@@ -1,6 +1,6 @@
 
 # YouDownloader
-## Easy to use Youtube Video Downloader
+### Easy to use Youtube Video Downloader
 ![Logo](/images/readmelogo.png)
 
 ## Purpose

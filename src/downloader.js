@@ -18,9 +18,9 @@ const button = document.getElementsByName("button");
 
 //filter
 function filter_vid_aud_both(formats){
-  const audiof = formats.filter(format => format.audioBitrate != null);
-  const videof = formats.filter(format => format.height != null);
-  const both = audiof.filter(function(format){
+  audiof = formats.filter(format => format.audioBitrate != null);
+  videof = formats.filter(format => format.height != null);
+  both = audiof.filter(function(format){
     return videof.includes(format);
   });
   return [videof, audiof, both];
@@ -78,7 +78,7 @@ function downloadvidaudandmerge(downloadpath, name, itagvideo, containerv, itaga
     
     //remove chars from name that can`t be in windows filename
     // <>:"/\|?*
-    const char = String.raw`<>:"/\|?*`;//"- "
+    char = String.raw`<>:"/\|?*`;//"- "
     for (let i = 0; i < name.length; i++) {
 	    for(let j = 0; j < char.length; j++){
         name = name.replace(char[j], "");
@@ -87,7 +87,7 @@ function downloadvidaudandmerge(downloadpath, name, itagvideo, containerv, itaga
 
     var videofinish = false;
     var audiofinish = false;
-
+    var done = false;
     //vid
     if(itagvideo != null){
       ytdl(textinput.value, { quality: itagvideo})
@@ -105,7 +105,7 @@ function downloadvidaudandmerge(downloadpath, name, itagvideo, containerv, itaga
       .on('finish', () => {
         audiofinish = true;
         if(videofinish && itagvideo != null && itagaudio != null){
-          //merging can take some time, the file can only be opened after fully beeing merged
+          //merging can take some time, the file can only be opened after fully being merged
           mergevidaud([downloadpath + name + "v" + "." + containerv, downloadpath + name + "a" + "." + containera], name);
         }
       })
@@ -117,7 +117,7 @@ function downloadvidaudandmerge(downloadpath, name, itagvideo, containerv, itaga
 
 // GUI
 function makeoption(parent, value){
-  let newoption = document.createElement("option");
+  newoption = document.createElement("option");
   newoption.value = value;
   newoption.innerHTML = value;
   parent.add(newoption);
@@ -155,7 +155,7 @@ textinput.addEventListener("input", async() => {
     for (let i = 0; i < aquali_unique.length; i++) {
       makeoption(audioformat, aquali_unique[i]);
     }
-      const inputdata = [info, formats, videoquali, vquali_unique, audioquali, aquali_unique];
+    inputdata = [info, formats, videoquali, vquali_unique, audioquali, aquali_unique];
   } else {
     // Remove all childs of the selects and add the None option back
     for (let i = videoformat.length; i > -1; i--) {
@@ -177,19 +177,17 @@ button[0].addEventListener("click", async() => {
   // Download audio and video depending on the selections; defaults for None
   // Writes 2 files and merges them together
   if(inputdata != undefined){
-    var vformat = ''
-    var aformat = ''
     if( (videoformat.value == "None") && (audioformat.value == "None")){
       downloadvidaudandmerge(downloadpath, inputdata[0].videoDetails.title, 136, "mp4", 140, "mp4");
     } else if( ((videoformat.value == "None") && (audioformat.value != "None"))){
-      aformat = inputdata[1][1].filter(value => value.audioBitrate == audioformat.value)[0];
+      var aformat = inputdata[1][1].filter(value => value.audioBitrate == audioformat.value)[0];
       downloadvidaudandmerge(downloadpath, inputdata[0].videoDetails.title, null, null, aformat.itag, aformat.container);
     } else if( ((videoformat.value != "None") && (audioformat.value == "None"))){
-      vformat = inputdata[1][0].filter(value => value.height == videoformat.value)[0]
+      var vformat = inputdata[1][0].filter(value => value.height == videoformat.value)[0]
       downloadvidaudandmerge(downloadpath, inputdata[0].videoDetails.title, vformat.itag, vformat.container, null, null);
     } else {
-      vformat = inputdata[1][0].filter(value => value.height == videoformat.value)[0];
-      aformat = inputdata[1][1].filter(value => value.audioBitrate == audioformat.value)[0];
+      var vformat = inputdata[1][0].filter(value => value.height == videoformat.value)[0];
+      var aformat = inputdata[1][1].filter(value => value.audioBitrate == audioformat.value)[0];
       downloadvidaudandmerge(downloadpath, inputdata[0].videoDetails.title, vformat.itag, vformat.container, aformat.itag, aformat.container);
     }
   }

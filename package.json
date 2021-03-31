@@ -11,7 +11,7 @@
     "make": "electron-forge make"
   },
   "dependencies": {
-    "@electron/remote": "^1.0.4",
+    "@electron/remote": "^1.1.0",
     "@ffmpeg-installer/ffmpeg": "^1.0.20",
     "ffmpeg": "0.0.4",
     "fluent-ffmpeg": "^2.1.2",

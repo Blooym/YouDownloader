@@ -20,7 +20,7 @@ jobs:
       uses: actions/setup-node@v2.1.5
       with:
         node-version: ${{ matrix.node-version }}
-    - name: InstalL Dependancies
+    - name: Install Dependancies
       run: npm ci
     - name: Build Application
       run: npm run make

@@ -2,20 +2,39 @@ name: App
 
 on:
   push:
-    branches: [ main ] 
+    branches: [ main ]
   pull_request:
     types: [opened, synchronize, reopened]
   workflow_dispatch:
   
 jobs:
-  Make:
+  Lint:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [ 14.x ]
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2.1.5
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - run: npm run lint
+
+    Make:
+    needs: Lint
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+        node-version: [ 14.x ]
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2.1.5
       with:

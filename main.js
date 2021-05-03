@@ -1,5 +1,5 @@
 const { app, BrowserWindow } = require('electron');
-require('@electron/remote/main').initialize()
+require('@electron/remote/main').initialize();
 
 function createWindow() {
     const win = new BrowserWindow({
@@ -14,7 +14,7 @@ function createWindow() {
         maximizable: false,
         fullscreenable: false,
         autoHideMenuBar: true,
-        icon: './images/logo.ico',
+        icon: './src/images/logo.ico',
         //frame: false,
         webPreferences: {
             nodeIntegration: true,

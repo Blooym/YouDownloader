@@ -25,6 +25,7 @@ jobs:
     - run: npm run lint
 
     Make:
+    needs: Lint
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:

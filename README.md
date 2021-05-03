@@ -1,7 +1,7 @@
 
 # YouDownloader
 ### Easy to use Youtube Video Downloader
-![Logo](/images/readmelogo.png)
+![Logo](src/images/readmelogo.png)
 
 ## Purpose
 YouDownloader's purpose is to be a lightweight and easy to use YouTube downloader software, ran locally. All downloading and processing of the video is done client-side using [ytdl-core](https://github.com/fent/node-ytdl-core) and built in [Electron](https://github.com/electron/electron).

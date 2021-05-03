@@ -1,6 +1,6 @@
 {
   "name": "youdownloader",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Desktop Youtube Downloader",
   "authors": "AngelNull",
   "main": "main.js",
@@ -31,7 +31,7 @@
   "config": {
     "forge": {
       "packagerConfig": {
-        "icon": "images/logo.ico"
+        "icon": "src/images/logo.ico"
       },
       "makers": [
         {

@@ -26,6 +26,7 @@ jobs:
 
     - name: Get Package Version
       id: package-version
+      uses: tyankatsu0105/read-package-version-actions@v1
 
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:

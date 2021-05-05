@@ -42,5 +42,4 @@ jobs:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         title: Version ${{ steps.package-version.outputs.version }}
         prerelease: false
-        files: |
-          ${{ github.workspace }}/out/make/zip/win32/x64/youdownloader-win32-x64-${{ steps.package-version.outputs.version }}.zip
+        files: ${{ github.workspace }}/out/make/zip/win32/x64/youdownloader-win32-x64-${{ steps.package-version.outputs.version }}.zip

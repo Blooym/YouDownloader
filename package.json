@@ -17,7 +17,7 @@
     "@ffmpeg-installer/ffmpeg": "^1.0.20",
     "ffmpeg": "0.0.4",
     "fluent-ffmpeg": "^2.1.2",
-    "ytdl-core": "^4.1.7"
+    "ytdl-core": "^4.7.0"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.54",

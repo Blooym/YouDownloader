@@ -48,4 +48,4 @@ jobs:
       with:
         name: YouDownloader ${{ matrix.os }}
         path: ${{ github.workspace }}/out/make/zip/
-      retention-days: 1
+        retention-days: 5

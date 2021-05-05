@@ -70,15 +70,14 @@ jobs:
     - name: Download Build Artifact
       uses: actions/download-artifact@v2
       with:
-        name: youdownloader-win32-x64-${{ steps.package-version.outputs.version }}.zip
-        path: ${{ github.workspace }}/out/make/zip/win32/x64/youdownloader-win32-x64-${{ steps.package-version.outputs.version }}.zip
+        path: ${{ github.workspace }}/artifacts
     - name: release 
       uses: actions/create-release@v1
       id: create_release
       with:
         draft: false
         prerelease: false
-        release_name: Version ${{ steps.packave-version.outputs.version }}
+        release_name: Version ${{ steps.package-version.outputs.version }}
         tag_name: v${{ steps.package-version.outputs.version }}
         body_path: CHANGELOG.md
       env:

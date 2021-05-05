@@ -1,6 +1,7 @@
 const { app, BrowserWindow } = require('electron');
 require('@electron/remote/main').initialize();
 
+/* Setup Window for Electron */
 function createWindow() {
     const win = new BrowserWindow({
         title: 'YouDownloader',
@@ -15,7 +16,6 @@ function createWindow() {
         fullscreenable: false,
         autoHideMenuBar: true,
         icon: './src/images/logo.ico',
-        //frame: false,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
@@ -23,7 +23,7 @@ function createWindow() {
         },
     });
 
-    win.loadFile('src/index.html');
+    win.loadFile('./src/pages/index.html');
 }
 
 app.whenReady().then(createWindow);

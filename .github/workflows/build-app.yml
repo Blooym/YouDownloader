@@ -53,11 +53,13 @@ jobs:
       with:
         name: YouDownloader - ${{ matrix.os }}
         path: ${{ github.workspace }}/out/make/zip/win32/x64/youdownloader-win32-x64-${{ steps.package-version.outputs.version }}.zip
-        retention-days: 1
 
   Release:
     needs: Make
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy: 
+      matrix:
+        os: [ windows-latest ]
 
     steps: 
     - name: Checkout Repository 
@@ -69,7 +71,8 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: youdownloader-win32-x64-${{ steps.package-version.outputs.version }}.zip
-    - name: release
+        path: ${{ github.workspace }}/out/make/zip/win32/x64/youdownloader-win32-x64-${{ steps.package-version.outputs.version }}.zip
+    - name: release 
       uses: actions/create-release@v1
       id: create_release
       with:

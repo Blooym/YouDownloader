@@ -42,6 +42,7 @@ jobs:
 
   Release:
     runs-on: ubuntu-latest
+    needs: [ Make ]
     steps:
 
       # Checkout Repo

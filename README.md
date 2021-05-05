@@ -29,14 +29,14 @@
 <img src="https://img.shields.io/github/stars/AngelNull/YouDownloader.svg?style=for-the-badge" align="center" alt='Stars' >
 <!--Issues-->
 <img src="https://img.shields.io/github/issues/AngelNull/YouDownloader.svg?style=for-the-badge" align="center" alt='Issues' >
+
+# 
+<h2 align="center"> Preview </h2>
+<img src="./src/images/readmelogo.png" align="center" alt='Preview'>
+
 </p>
 
 # 
-<h2> Preview </h2>
-<img src="./src/images/readmelogo.png" height="350">
-
-# 
-
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary>Table of Contents</summary>

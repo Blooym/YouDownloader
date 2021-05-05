@@ -3,8 +3,6 @@ name: App
 on:
   push:
     branches: [ main ]
-  pull_request:
-    types: [opened, synchronize, reopened]
   workflow_dispatch:
   
 jobs:
@@ -27,31 +25,9 @@ jobs:
     - name: Run ESLint
       run: npm run lint
 
-  # CodeQL analysis - Runs alongside ESLint
-  CodeQL:
-    runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: false
-      matrix:
-        language: [ 'javascript' ]
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    # Initializes the CodeQL tools for scanning.
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v1
-      with:
-        languages: ${{ matrix.language }}
-
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v1
-
   # Build the application and upload the artifacts
   Make:
-    needs: [ ESLint, CodeQL ]
+    needs: [ ESLint ]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -84,14 +60,13 @@ jobs:
 
       # Upload Build Artifact for Pre-Release
     - name: Upload Build Artifact
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         name: YouDownloader-${{ steps.package-version.outputs.version }}-win.zip
         path: ${{ github.workspace }}/out/make/zip/win32/x64/youdownloader-win32-x64-${{ steps.package-version.outputs.version }}.zip
+        retention-days: 5
 
   Pre-Release:
-    # Only make pre-release if pushed to main branch and if it isn't a pull request
-    if: ${{ github.ref == 'refs/heads/main' }} || ${{ github.event_name }} != 'pull_request' 
     needs: Make
     runs-on: ${{ matrix.os }}
     strategy: 

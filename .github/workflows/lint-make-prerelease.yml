@@ -29,7 +29,6 @@ jobs:
 
   # CodeQL analysis - Runs alongside ESLint
   CodeQL:
-    name: Analyze
     runs-on: ubuntu-latest
 
     strategy:

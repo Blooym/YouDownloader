@@ -1,0 +1,46 @@
+name: "Release"
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+
+  Release:
+    name: "Tagged"
+    runs-on: "windows-latest"
+
+    steps:
+      # Checkout Repo
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+      # Setup Node.js
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2.1.5
+      with:
+        node-version: ${{ matrix.node-version }}
+
+      # Install Dependancies
+    - name: Install Dependancies
+      run: npm ci
+
+      # Build The Application
+    - name: Build Application
+      run: npm run make
+
+      # Fetch the package.json version
+    - name: Get Package Version
+      id: package-version
+      uses: tyankatsu0105/read-package-version-actions@v1
+
+      # Create the release for the pushed tag and generate a changelog
+    - name: Release Version
+      uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        title: Version ${{ steps.package-version.outputs.version }}
+        prerelease: false
+        files: |
+          ${{ github.workspace }}/out/make/zip/win32/x64/youdownloader-win32-x64-${{ steps.package-version.outputs.version }}.zip

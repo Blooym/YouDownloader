@@ -5,6 +5,7 @@
   "authors": "AngelNull",
   "main": "main.js",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",

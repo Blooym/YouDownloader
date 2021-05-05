@@ -49,11 +49,3 @@ jobs:
         name: YouDownloader ${{ matrix.os }}
         path: ${{ github.workspace }}/out/make/zip/
       retention-days: 1
-
-  Release: 
-    needs: Make
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: 

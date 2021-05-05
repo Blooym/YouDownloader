@@ -55,7 +55,7 @@ jobs:
         path: ${{ github.workspace }}/out/make/zip/win32/x64/youdownloader-win32-x64-${{ steps.package-version.outputs.version }}.zip
 
   Pre-Release:
-    if: ${{ github.ref == 'refs/heads/main' }}
+    if: ${{ github.ref == 'refs/heads/main' }} || ${{ github.event_name }} != 'pull_request' 
     needs: Make
     runs-on: ${{ matrix.os }}
     strategy: 
@@ -78,6 +78,6 @@ jobs:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         automatic_release_tag: "latest"
         prerelease: true
-        title: "Development Build"
+        title: "Dev Build - ${{ steps.package-version.outputs.version }}"
         files: |
           artifacts/YouDownloader-${{ steps.package-version.outputs.version }}-win.zip

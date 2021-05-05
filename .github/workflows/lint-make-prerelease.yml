@@ -8,6 +8,7 @@ on:
   workflow_dispatch:
   
 jobs:
+  # Run ESLint for the commit
   ESLint:
     runs-on: ubuntu-latest
     strategy:
@@ -26,8 +27,32 @@ jobs:
     - name: Run ESLint
       run: npm run lint
 
+  # CodeQL analysis - Runs alongside ESLint
+  CodeQL:
+    name: Analyze
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'javascript' ]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    # Initializes the CodeQL tools for scanning.
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v1
+      with:
+        languages: ${{ matrix.language }}
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v1
+
+  # Build the application and upload the artifacts
   Make:
-    needs: ESLint
+    needs: [ ESLint, CodeQL ]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -35,19 +60,30 @@ jobs:
         node-version: [ 14.x ]
 
     steps:
+      # Checkout Repo
     - name: Checkout Repository
       uses: actions/checkout@v2
+
+      # Setup Node.js
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2.1.5
       with:
         node-version: ${{ matrix.node-version }}
+
+      # Install Dependancies
     - name: Install Dependancies
       run: npm ci
+
+      # Build The Application
     - name: Build Application
       run: npm run make
+
+      # Fetch the package.json version
     - name: Get Package Version
       id: package-version
       uses: tyankatsu0105/read-package-version-actions@v1
+
+      # Upload Build Artifact for Pre-Release
     - name: Upload Build Artifact
       uses: actions/upload-artifact@v1
       with:
@@ -55,6 +91,7 @@ jobs:
         path: ${{ github.workspace }}/out/make/zip/win32/x64/youdownloader-win32-x64-${{ steps.package-version.outputs.version }}.zip
 
   Pre-Release:
+    # Only make pre-release if pushed to main branch and if it isn't a pull request
     if: ${{ github.ref == 'refs/heads/main' }} || ${{ github.event_name }} != 'pull_request' 
     needs: Make
     runs-on: ${{ matrix.os }}
@@ -63,15 +100,22 @@ jobs:
         os: [ windows-latest ]
 
     steps: 
+      # Checkout Repo
     - name: Checkout Repository 
       uses: actions/checkout@v2
+
+      # Fetch the package.json version
     - name: Get Package Version
       id: package-version
       uses: tyankatsu0105/read-package-version-actions@v1
+
+      # Download the Build Artifact from the make job
     - name: Download Build Artifact
       uses: actions/download-artifact@v2
       with:
         path: ${{ github.workspace }}/artifacts
+      
+      # Push to the pre-release tag with the latest commit w/ a built artifact
     - name: Update Pre-Release
       uses: "marvinpinto/action-automatic-releases@latest"
       with:

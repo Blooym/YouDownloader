@@ -51,10 +51,11 @@ jobs:
     - name: Upload Build Artifact
       uses: actions/upload-artifact@v1
       with:
-        name: YouDownloader - ${{ matrix.os }}
+        name: YouDownloader-${{ steps.package-version.outputs.version }}-win.zip
         path: ${{ github.workspace }}/out/make/zip/win32/x64/youdownloader-win32-x64-${{ steps.package-version.outputs.version }}.zip
 
-  Release:
+  Pre-Release:
+    if: ${{ github.ref == 'refs/heads/main' }}
     needs: Make
     runs-on: ${{ matrix.os }}
     strategy: 
@@ -71,14 +72,12 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         path: ${{ github.workspace }}/artifacts
-    - name: release 
-      uses: actions/create-release@v1
-      id: create_release
+    - name: Update Pre-Release
+      uses: "marvinpinto/action-automatic-releases@latest"
       with:
-        draft: false
-        prerelease: false
-        release_name: Version ${{ steps.package-version.outputs.version }}
-        tag_name: v${{ steps.package-version.outputs.version }}
-        body_path: CHANGELOG.md
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        prerelease: true
+        title: "Development Build"
+        files: |
+          artifacts/YouDownloader-${{ steps.package-version.outputs.version }}-win.zip

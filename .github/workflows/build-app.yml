@@ -29,7 +29,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest, ubuntu-latest, macos-latest]
+        os: [windows-latest]
         node-version: [ 14.x ]
 
     steps:
@@ -43,9 +43,12 @@ jobs:
       run: npm ci
     - name: Build Application
       run: npm run make
+    - name: Get Version
+      id: package-version
+      uses: martinbeentjes/npm-get-version-action@master
     - name: Upload Artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: YouDownloader ${{ matrix.os }}
-        path: ${{ github.workspace }}/out/make/zip/
+        name: YouDownloader - ${{ matrix.os }}
+        path: ${{ github.workspace }}/out/make/zip/win32/x64/youdownloader-win32-${{ steps.package-version.outputs.current-version}}.zip
         retention-days: 5

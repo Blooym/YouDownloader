@@ -21,15 +21,17 @@ jobs:
       uses: actions/setup-node@v2.1.5
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm run lint
+    - name: Install Dependancies
+      run: npm ci
+    - name: Run ESLint
+      run: npm run lint
 
   Make:
     needs: ESLint
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest]
+        os: [ windows-latest ]
         node-version: [ 14.x ]
 
     steps:
@@ -50,5 +52,5 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: YouDownloader - ${{ matrix.os }}
-        path: ${{ github.workspace }}/out/make/zip/win32/x64/youdownloader-win32-${{ steps.package-version.outputs.version }}.zip
-        retention-days: 5
+        path: ${{ github.workspace }}/out/make/zip/win32/x64/youdownloader-win32-x64-${{ steps.package-version.outputs.version }}.zip
+        retention-days: 1

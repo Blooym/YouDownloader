@@ -1,4 +1,4 @@
-name: Artifact Tidyup
+name: Artifact
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch: 
 
 jobs:
-  tidy-artifacts:
+  Tidy:
     runs-on: ubuntu-latest
     timeout-minutes: 10
 

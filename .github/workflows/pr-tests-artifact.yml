@@ -63,16 +63,3 @@ jobs:
       with:
         name: YouDownloader-${{ steps.package-version.outputs.version }}-win.zip
         path: ${{ github.workspace }}/out/make/zip/win32/x64/youdownloader-win32-x64-${{ steps.package-version.outputs.version }}.zip
-
-  Post-Comment:
-    needs: [ Make ] 
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: mshick/add-pr-comment@v1
-      with:
-        message: The compiled app artifact for this pull request can be found under the "App" workflow once it has been ran successfully.
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        repo-token-user-login: 'github-actions[bot]' 
-        allow-repeats: false
-  

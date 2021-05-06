@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
+const ffmpegPath = require('ffmpeg-static');
 const { dialog } = require('@electron/remote');
 const fs = require('fs');
 const ytdl = require('ytdl-core');

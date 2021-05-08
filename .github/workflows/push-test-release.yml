@@ -1,4 +1,4 @@
-name: Push/App
+name: App
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: PR/App
+name: PR-App
 
 on:
   pull_request:

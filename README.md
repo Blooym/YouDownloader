@@ -105,7 +105,7 @@ Make all the changes you'd like to, test the app both with `npm start` and `npm 
 ## Pull Requests
 Please keep all commits in the pull request to the [commit convention](./.github/COMMIT_CONVENTION.md) to allow for automatic changelog generation when a release is made. 
 
-Multiple jobs will be ran when a pull-request is made to ensure it is up to standards and builds correctly. A build artifact will be available for 90 days after the last workflow on the pull request is ran with the compiled archive. 
+Multiple jobs will be ran when a pull-request is made to ensure it is up to standards and builds correctly.
 
 # License
 📜 YouDownloader is licensed under the [**MIT** license](./LICENSE) (c) 2021 AngelNull.

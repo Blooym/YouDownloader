@@ -100,14 +100,14 @@ jobs:
           artifacts/YouDownloader-${{ steps.package-version.outputs.version }}-win.zip
 
     # Tidy's up old artifacts
-    Tidy:
-      needs: [ Pre-Release ]
-      runs-on: ubuntu-latest
+  Tidy:
+    needs: [ Pre-Release ]
+    runs-on: ubuntu-latest
 
-      steps:
-      - name: Remove Old Artifacts
-        uses: c-hive/gha-remove-artifacts@v1
-        with:
-          age: '7 day'
-          skip-tags: true
-          skip-recent: 3
+    steps:
+    - name: Remove Old Artifacts
+      uses: c-hive/gha-remove-artifacts@v1
+      with:
+        age: '7 day'
+        skip-tags: true
+        skip-recent: 3

@@ -28,10 +28,9 @@ jobs:
   # Build the application and upload the artifacts
   Make:
     needs: [ ESLint ]
-    runs-on: ${{ matrix.os }}
+    runs-on: windows-latest
     strategy:
       matrix:
-        os: [ windows-latest ]
         node-version: [ 14.x ]
 
     steps:
@@ -67,10 +66,7 @@ jobs:
 
   Pre-Release:
     needs: Make
-    runs-on: ${{ matrix.os }}
-    strategy: 
-      matrix:
-        os: [ windows-latest ]
+    runs-on: ubuntu-latest
 
     steps: 
       # Checkout Repo

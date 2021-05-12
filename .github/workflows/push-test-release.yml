@@ -59,7 +59,7 @@ jobs:
 
       # Upload Build Artifact for Pre-Release
     - name: Upload Build Artifact
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2.2.3
       with:
         name: YouDownloader-${{ steps.package-version.outputs.version }}-win.zip
         path: ${{ github.workspace }}/out/make/zip/win32/x64/youdownloader-win32-x64-${{ steps.package-version.outputs.version }}.zip

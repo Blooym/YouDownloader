@@ -1,5 +1,11 @@
-**Please describe the changes this PR makes and why it should be merged:**
+## Describe Your Changes
+Please include what you have changed and why it has been changed.
 
+## Checklist
+- [ ] These changes work without introducing further issues.
+- [ ] These changes fit the theme of the project and are readable.
+- [ ] All commits follow the [commit convention](./COMMIT_CONVENTION.md).
+- [ ] Where applicable, this code has been linted.
+- [ ] Where applicable, this code has been commented.
 
-
-**If this PR is related to an issue, please link them here:**
+If this is related to an issue, link with #ISSUE_NUM

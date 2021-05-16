@@ -35,12 +35,13 @@ async function mergeVideoAudio(filepaths, name) {
         })
         .then((result) => {
             downloadpath = result.filePaths;
-            console.log(result.filePaths);
+            console.log(`File path chosen: ${result.filePaths}`);
         })
         .catch((err) => {
             console.log(err);
         });
 
+    console.log(`Download complete, processing video audio merge...`);
     document.getElementById('topText').innerText = 'Processing';
     document.getElementById('paraText').innerText =
         'Your video has now been downloaded and is being processed, this may take some time and may be resource intensive. Do not reload or close the program while this is happening.';
@@ -67,8 +68,8 @@ async function mergeVideoAudio(filepaths, name) {
 
 // Download File
 function videoAudioMerge(downloadpath, name, itagvideo, containerv, itagaudio, containera) {
-    // "", title, 18, mp4, 18, mp4,
     if (ytdl.validateURL(textInput.value)) {
+        console.log('Validated URL');
         document.getElementById('topText').innerText = 'Downloading';
         document.getElementById('paraText').innerText =
             'Your video is now downloading, please note that this may take a while depending on the quality of the video. Do not reload or close the program while this is happening.';
@@ -95,6 +96,7 @@ function videoAudioMerge(downloadpath, name, itagvideo, containerv, itagaudio, c
                     videofinish = true;
                     if (audiofinish && itagvideo != null && itagaudio != null) {
                         //no need to merge if audio XOR video
+                        console.log(`Video Download Done. ${downloadpath}/${name}`);
                         mergeVideoAudio([downloadpath + name + 'v' + '.' + containerv, downloadpath + name + 'a' + '.' + containera], name);
                     }
                 })
@@ -107,6 +109,7 @@ function videoAudioMerge(downloadpath, name, itagvideo, containerv, itagaudio, c
                     audiofinish = true;
                     if (videofinish && itagvideo != null && itagaudio != null) {
                         //merging can take some time, the file can only be opened after fully being merged
+                        console.log(`Audio Download Done. ${downloadpath}/${name}`);
                         mergeVideoAudio([downloadpath + name + 'v' + '.' + containerv, downloadpath + name + 'a' + '.' + containera], name);
                     }
                 })
@@ -117,6 +120,7 @@ function videoAudioMerge(downloadpath, name, itagvideo, containerv, itagaudio, c
 
 // GUI
 function makeOption(parent, value) {
+    console.log(`Creating options: ${value}`);
     newoption = document.createElement('option');
     newoption.value = value;
     newoption.innerHTML = value;
@@ -125,6 +129,7 @@ function makeOption(parent, value) {
 
 // Events Listener
 textInput.addEventListener('input', async () => {
+    console.log(`Registered Text Input: ${textInput.value}`);
     if (ytdl.validateURL(textInput.value)) {
         // Fetch Video Info
         let info = await ytdl.getInfo(textInput.value);
@@ -162,6 +167,7 @@ textInput.addEventListener('input', async () => {
         for (let i = audioFormat.length; i > -1; i--) {
             audioFormat.remove(i);
         }
+        console.log(`Clearing options.`);
         makeOption(videoFormat, 'None');
         makeOption(audioFormat, 'None');
     }
@@ -173,6 +179,7 @@ button[0].addEventListener('click', async () => {
     // Download audio and video depending on the selections; defaults for None
     // Writes 2 files and merges them together
     if (inputdata != undefined) {
+        console.log(`Beginning Download For: ${inputdata[0].videoDetails.title}`);
         if (videoFormat.value == 'None' && audioFormat.value == 'None') {
             videoAudioMerge(downloadpath, inputdata[0].videoDetails.title, 136, 'mp4', 140, 'mp4');
         } else if (videoFormat.value == 'None' && audioFormat.value != 'None') {

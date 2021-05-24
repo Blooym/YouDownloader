@@ -1,0 +1,55 @@
+name: Run-Schedule
+
+on:
+ workflow_dispatch:
+ schedule:
+  - cron: "0 0 * * *"
+
+jobs:
+  # Check to see if anything is stale in the repository
+  Check-Stale:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/stale@v3.0.19
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        stale-issue-message: 'This has been marked stale due to a lack of activity. It will automatically closed in 20 days unless it gets activity.'
+        stale-pr-message: 'This has been marked stale due to a lack of activity. It will automatically closed in 30 days unless it gets activity.'
+        close-issue-message: 'This issue has been closed due to a lack of acivity after being marked stale.'
+        close-pr-message: 'This pull request has been automatically closed as it was marked as stale and remained inactive.'
+        exempt-issue-labels: 'in-progress, no-stale'
+        exempt-pr-labels: 'in-progress, no-stale'
+        exempt-milestones: true
+        stale-issue-label: 'stale'
+        stale-pr-label: 'stale'
+        close-issue-label: 'stale | closed'
+        close-pr-label: 'stale | closed'
+        days-before-stale: 60
+        days-before-close: 20
+  
+  # Remove old build artifacts
+  Clean-Artifacts:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Remove Old Artifacts
+      uses: c-hive/gha-remove-artifacts@v1.2.0
+      with:
+        age: '7 day'
+        skip-tags: true
+        skip-recent: 3
+
+  # Tidy up locked threads
+  Lock-Threads:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dessant/lock-threads@v2
+        with:
+          github-token: ${{ github.token }}
+          issue-lock-inactive-days: '60'
+          issue-lock-labels: 'resolved: locked'
+          issue-lock-comment: 'This issue has been been inactive after being closed for a long period of time and will now be locked & resolved. Please make a new issue if needed.'
+          issue-lock-reason: 'resolved'
+          pr-lock-inactive-days: '60'
+          pr-lock-labels: 'resolved: locked'
+          pr-lock-comment: 'This pull request has been inactive for a long period of time and will now be locked and resolved, please open a new pull request if needed.'
+          pr-lock-reason: 'resolved'

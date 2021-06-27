@@ -66,7 +66,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: YouDownloader-${{ steps.package-version.outputs.version }}-win.exe
-        path: ${{ github.workspace }}/out/make/squirrel.windows/x64/youdownloader-${{ steps.package-version.outputs.version }}-Setup.exe
+        path: ${{ github.workspace }}/out/make/squirrel.windows/x64/youdownloader-${{ steps.package-version.outputs.version }} Setup.exe 
 
   Pre-Release:
     needs: Make

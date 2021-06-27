@@ -1,9 +1,7 @@
 <!--PROJECT HEAD-->
 <br />
 <p align="center">
-  <a href="https://github.com/raine-discord/website">
-    <img src="src/images/logo.ico" alt="Logo">
-  </a>
+<img src="src/images/logo.ico" alt="Logo">
 
   <h3 align="center">YouDownloader</h3>
 

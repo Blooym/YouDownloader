@@ -9,19 +9,20 @@ jobs:
   # Run Linting 
   Lint:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [ 14.x ]
 
     steps:
+      # Checkout Repository
     - name: Checkout Repository
       uses: actions/checkout@v2.3.4
-    - name: Use Node.js ${{ matrix.node-version }}
+      # Setup Node
+    - name: Setup Node.js
       uses: actions/setup-node@v2.1.5
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 14.x
+      # Install dependancies
     - name: Install Dependancies
       run: npm ci
+      # Run ESLint
     - name: Run ESLint
       run: npm run lint
 
@@ -29,14 +30,13 @@ jobs:
   Build:
     needs: [ Lint ]
     runs-on: windows-latest
-
     steps:
       # Checkout Repo
     - name: Checkout Repository
       uses: actions/checkout@v2.3.4
 
       # Setup Node.js
-    - name: Use Node.js 14.x
+    - name: Setup Node.js
       uses: actions/setup-node@v2.1.5
       with:
         node-version: 14.x
@@ -55,14 +55,14 @@ jobs:
       uses: tyankatsu0105/read-package-version-actions@v1
 
       # Upload Build Artifact for Pre-Release [Zip]
-    - name: Upload Build Artifact [ZIP]
+    - name: Upload Build Artifact [.zip]
       uses: actions/upload-artifact@v1
       with:
         name: YouDownloader-${{ steps.package-version.outputs.version }}-win.zip
         path: ${{ github.workspace }}/out/make/zip/win32/x64/youdownloader-win32-x64-${{ steps.package-version.outputs.version }}.zip
 
       # Upload Build Artifact for Pre-Release [Exe]
-    - name: Upload Build Artifact [Exe]
+    - name: Upload Build Artifact [.exe]
       uses: actions/upload-artifact@v1
       with:
         name: YouDownloader-${{ steps.package-version.outputs.version }}-win.exe

@@ -8,19 +8,20 @@ jobs:
   # Run ESLint for the commit
   Lint:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [ 14.x ]
 
     steps:
+      # Checkout repository
     - name: Checkout Repository
       uses: actions/checkout@v2.3.4
-    - name: Use Node.js ${{ matrix.node-version }}
+      # Setup Node.js
+    - name: Setup Node.js
       uses: actions/setup-node@v2.1.5
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 14.x
+      # Install dependancies
     - name: Install Dependancies
       run: npm ci
+      # Run ESlint
     - name: Run ESLint
       run: npm run lint
 

@@ -17,3 +17,6 @@ GitHub Actions will automatically generate a changelog and create a release for 
 
 ## CI - Prerelease
 GitHub Actions will automatically generate a prerelease for any commit pushed to the repository unless you specify not to with `[skip ci]` and attach a completed build with it. If CI fails to build the project, it will skip pre-release.
+
+## Application Autoupdating
+YouDownloader uses update-electron-app to issue autoupdates when releases are made.

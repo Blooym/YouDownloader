@@ -33,12 +33,19 @@ jobs:
       id: package-version
       uses: tyankatsu0105/read-package-version-actions@v1
 
-      # Upload Build Artifact for Pre-Release
-    - name: Upload Build Artifact
+      # Upload Build Artifact for Pre-Release [Zip]
+    - name: Upload Build Artifact [ZIP]
       uses: actions/upload-artifact@v1
       with:
         name: YouDownloader-${{ steps.package-version.outputs.version }}-win.zip
         path: ${{ github.workspace }}/out/make/zip/win32/x64/youdownloader-win32-x64-${{ steps.package-version.outputs.version }}.zip
+
+      # Upload Build Artifact for Pre-Release [Exe]
+    - name: Upload Build Artifact [Exe]
+      uses: actions/upload-artifact@v1
+      with:
+        name: YouDownloader-${{ steps.package-version.outputs.version }}-win.exe
+        path: ${{ github.workspace }}/out/make/squirrel.windows/x64/youdownloader-${{ steps.package-version.outputs.version }}-Setup.exe
 
   Release:
     runs-on: ubuntu-latest
@@ -69,3 +76,4 @@ jobs:
         prerelease: false
         files: |
           artifacts/YouDownloader-${{ steps.package-version.outputs.version }}-win.zip
+          artifacts/YouDownloader-${{ steps.package-version.outputs.version }}-win.exe

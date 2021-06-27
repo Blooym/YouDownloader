@@ -26,7 +26,7 @@ jobs:
       run: npm run lint
 
   # Build the application and upload the artifacts
-  Make:
+  Build:
     needs: [ Lint ]
     runs-on: windows-latest
 
@@ -69,7 +69,7 @@ jobs:
         path: ${{ github.workspace }}/out/make/squirrel.windows/x64/youdownloader-${{ steps.package-version.outputs.version }} Setup.exe 
 
   Pre-Release:
-    needs: Make
+    needs: Build
     runs-on: ubuntu-latest
 
     steps: 
@@ -98,17 +98,4 @@ jobs:
         title: "Dev Build - ${{ steps.package-version.outputs.version }}"
         files: |
           artifacts/YouDownloader-${{ steps.package-version.outputs.version }}-win.zip
-          artifacts/YouDownloader-${{ steps.package-version.outputs.version }}-win.exe
-
-    # Tidy's up old artifacts
-  Tidy:
-    needs: [ Pre-Release ]
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Remove Old Artifacts
-      uses: c-hive/gha-remove-artifacts@v1.2.0
-      with:
-        age: '7 day'
-        skip-tags: true
-        skip-recent: 3
+          artifacts/YouDownloader-${{ steps.package-version.outputs.version }}-win.exe  

@@ -7,7 +7,7 @@ on:
 
 jobs:
 
-  Make:
+  Build:
     runs-on: "windows-latest"
     steps:
       # Checkout Repo
@@ -45,11 +45,11 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: YouDownloader-${{ steps.package-version.outputs.version }}-win.exe
-        path: ${{ github.workspace }}/out/make/squirrel.windows/x64/youdownloader-${{ steps.package-version.outputs.version }}-Setup.exe
+        path: ${{ github.workspace }}/out/make/squirrel.windows/x64/youdownloader-${{ steps.package-version.outputs.version }} Setup.exe
 
   Release:
     runs-on: ubuntu-latest
-    needs: [ Make ]
+    needs: [ Build ]
     steps:
 
       # Checkout Repo

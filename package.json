@@ -5,7 +5,10 @@
   "authors": "AngelNull",
   "main": "src/main.js",
   "license": "MIT",
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AngelNull/YouDownloader.git"
+  },
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
@@ -15,13 +18,16 @@
   },
   "dependencies": {
     "@electron/remote": "^1.2.0",
+    "electron-squirrel-startup": "^1.0.0",
     "ffmpeg": "0.0.4",
     "ffmpeg-static": "^4.4.0",
     "fluent-ffmpeg": "^2.1.2",
+    "update-electron-app": "^2.0.1",
     "ytdl-core": "^4.8.3"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.57",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.57",
     "@electron-forge/maker-zip": "^6.0.0-beta.57",
     "electron": "^13.1.4",
     "eslint": "^7.29.0",
@@ -30,15 +36,6 @@
     "prettier": "^2.3.2"
   },
   "config": {
-    "forge": {
-      "packagerConfig": {
-        "icon": "src/images/logo.ico"
-      },
-      "makers": [
-        {
-          "name": "@electron-forge/maker-zip"
-        }
-      ]
-    }
+    "forge": "./forge.config.js"
   }
 }

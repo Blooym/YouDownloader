@@ -1,5 +1,8 @@
 const { app, BrowserWindow } = require('electron');
+require('update-electron-app')();
 require('@electron/remote/main').initialize();
+
+if (require('electron-squirrel-startup')) return;
 
 /* Setup Window for Electron */
 function createWindow() {

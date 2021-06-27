@@ -27,7 +27,7 @@ jobs:
 
   # Build the application and upload the artifacts
   Make:
-    needs: [ ESLint ]
+    needs: [ Lint ]
     runs-on: windows-latest
 
     steps:

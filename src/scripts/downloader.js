@@ -152,11 +152,11 @@ textInput.addEventListener('input', async () => {
         });
         // Video
         for (let i = 0; i < vquali_unique.length; i++) {
-            makeOption(videoFormat, vquali_unique[i]);
+            makeOption(videoFormat, `${vquali_unique[i]}p`);
         }
         //display audio
         for (let i = 0; i < aquali_unique.length; i++) {
-            makeOption(audioFormat, aquali_unique[i]);
+            makeOption(audioFormat, `${aquali_unique[i]}kbps`);
         }
         inputdata = [info, formats, videoquali, vquali_unique, audioquali, aquali_unique];
     } else {
@@ -168,8 +168,8 @@ textInput.addEventListener('input', async () => {
             audioFormat.remove(i);
         }
         console.log(`Clearing options.`);
-        makeOption(videoFormat, 'None');
-        makeOption(audioFormat, 'None');
+        makeOption(videoFormat, 'Video');
+        makeOption(audioFormat, 'Audio');
     }
 });
 

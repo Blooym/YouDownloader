@@ -75,9 +75,11 @@ YouDownloader is a lightweight and easy to use YouTube downloader software, ran 
 
 ## Installing
 
-Downloading and using YouDownloader is easy, simply download the [latest release](https://github.com/AngelNull/YouDownloader/releases) from the release assets tab and extract the zip file. Then run the .exe and you're good to go.
+ℹ **Youdownloader is currently only supported on Windows.** There are plans to test and support for other platforms later.
 
-If you live on the edge, you can download the latest developer release which contains the latest version of YouDownloader, but may not be as stable.
+Downloading and using YouDownloader is easy, simply download the [latest release](https://github.com/AngelNull/YouDownloader/releases) in either `.exe` format (supports *autoupdates*, installs on machine) or `.zip` format (lightweight, only runs from folder).
+
+If you live on the edge, you can download the latest developer release which contains the latest version of YouDownloader, but may not be as stable but will have all new changes.
 
 ## Built With
 This software has been built with the following production dependancies:    
@@ -85,7 +87,6 @@ This software has been built with the following production dependancies:
 **Fluent-FFMPEG** - Also for handling merging of audio and video   
 **YTDL-Core** - Downloading audio and video of the requested youtube link   
 **Electron** - To allow for launching YouDownloader as a desktop application 
-
 
 # Contributing
 Contributions are welcomed and greatly appreciated, as this is my first Electron app I'm sure there are plenty of things that could be improved!

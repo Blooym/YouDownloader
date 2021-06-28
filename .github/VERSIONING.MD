@@ -1,15 +1,15 @@
 # Releasing New Versions
 
 ## Making a new tag for version
-**v0.0.0 = Tag for the Version**
+**0.0.0 = Tag for the Version**
 
 Making a release from the latest commit:
 ```
-git tag v0.0.0 HEAD
+git tag 0.0.0 HEAD
 ```
 Pushing the tag to the repository
 ```
-git push origin v0.0.0
+git push origin 0.0.0
 ```
 
 ## CI 

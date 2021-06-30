@@ -30,7 +30,7 @@
 
 # 
 <h2 align="center"> Preview </h2>
-<img src="./src/images/readmelogo.png" align="center" alt='Preview'>
+<img src="./src/images/preview.png" align="center" alt='Preview'>
 
 </p>
 

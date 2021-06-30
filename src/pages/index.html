@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+    <!-- Metadata & Title-->
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
         <title>YouDownloader</title>
     </head>
     <body>
+        <!-- Sidebar -->
         <aside>
             <figure>
                 <div id="avatar"></div>
@@ -16,17 +18,18 @@
             <img src="../images/menu.svg" alt='Menu Icon'>
             <nav>
                 <ul>
-                    <li><a>Version: 1.2.0</a></li>
+                    <li><a>Version: 1.2.1</a></li>
                     <li><a>License: MIT</a></li>
                     <li><a>By AngelNull</a></li>
                 </ul>
             </nav>
         </aside>
+        <!-- Middle of the app -->
         <main>
             <h1 id='topText'>Download Video</h1>
             <p id='paraText'>Paste the link, select the quality and download.</p>
 
-            <input class='text-input' id="urlinput" autofocus type="text" name="yturl" placeholder="URL" value="">
+            <input class='text-input' id="urlinput" autofocus type="url" name="yturl" placeholder="URL" value="">
             <select class='dropdown' id="videofselect" name="videof">
               <option value="None">Video Quality</option>
             </select>
@@ -36,7 +39,7 @@
             <button type="submit" name="button" class="button" id='button'>Download</button>
             
         </main>
-
+        <!-- Download Script -->
         <script type="text/javascript" src="../scripts/downloader.js"></script>
 
     </body>

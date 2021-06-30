@@ -152,11 +152,11 @@ textInput.addEventListener('input', async () => {
         });
         // Video
         for (let i = 0; i < vquali_unique.length; i++) {
-            makeOption(videoFormat, `${vquali_unique[i]}p`);
+            makeOption(videoFormat, vquali_unique[i]);
         }
         //display audio
         for (let i = 0; i < aquali_unique.length; i++) {
-            makeOption(audioFormat, `${aquali_unique[i]}kbps`);
+            makeOption(audioFormat, aquali_unique[i]);
         }
         inputdata = [info, formats, videoquali, vquali_unique, audioquali, aquali_unique];
     } else {

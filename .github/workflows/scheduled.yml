@@ -47,9 +47,7 @@ jobs:
           github-token: ${{ github.token }}
           issue-lock-inactive-days: '60'
           issue-lock-labels: 'resolved: locked'
-          issue-lock-comment: 'This issue has been been inactive after being closed for a long period of time and will now be locked & resolved. Please make a new issue if needed.'
           issue-lock-reason: 'resolved'
           pr-lock-inactive-days: '60'
           pr-lock-labels: 'resolved: locked'
-          pr-lock-comment: 'This pull request has been inactive for a long period of time and will now be locked and resolved, please open a new pull request if needed.'
           pr-lock-reason: 'resolved'

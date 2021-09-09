@@ -2,7 +2,7 @@ module.exports = {
     packagerConfig: {
         name: 'youdownloader',
         icon: './src/images/logo.ico',
-        copyright: 'MIT (c) AngelNull 2021',
+        copyright: 'MIT (c) Blooym 2021',
     },
     makers: [
         {

@@ -2,12 +2,12 @@
   "name": "youdownloader",
   "version": "1.2.1",
   "description": "Desktop Youtube Downloader",
-  "authors": "AngelNull",
+  "authors": "Blooym",
   "main": "src/main.js",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/AngelNull/YouDownloader.git"
+    "url": "https://github.com/Blooym/YouDownloader.git"
   },
   "scripts": {
     "start": "electron-forge start",

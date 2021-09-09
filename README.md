@@ -8,25 +8,25 @@
   <p align="center">
     The light-weight and easy to use YouTube downloader
     <br />
-    <a href="https://github.com/AngelNull/YouDownloader/releases"><strong>Download »</strong></a>
+    <a href="https://github.com/Blooym/YouDownloader/releases"><strong>Download »</strong></a>
     <br />
     <br />
     <a href="#contributing">Contributing</a>
     ·
-    <a href="https://github.com/AngelNull/YouDownloader/issues">Issues</a>
+    <a href="https://github.com/Blooym/YouDownloader/issues">Issues</a>
     ·
-    <a href="https://github.com/AngelNull/YouDownloader/pulls">Pull Requests</a>
+    <a href="https://github.com/Blooym/YouDownloader/pulls">Pull Requests</a>
   </p>
 </p>
 <p align="center">
 <!--Contributors-->
-<img src="https://img.shields.io/github/contributors/AngelNull/YouDownloader.svg?style=for-the-badge" align="center" alt='Contributors'>
+<img src="https://img.shields.io/github/contributors/Blooym/YouDownloader.svg?style=for-the-badge" align="center" alt='Contributors'>
 <!--Forks-->
-<img src="https://img.shields.io/github/forks/AngelNull/YouDownloader.svg?style=for-the-badge" align="center" alt='Forks' >
+<img src="https://img.shields.io/github/forks/Blooym/YouDownloader.svg?style=for-the-badge" align="center" alt='Forks' >
 <!--Stars-->
-<img src="https://img.shields.io/github/stars/AngelNull/YouDownloader.svg?style=for-the-badge" align="center" alt='Stars' >
+<img src="https://img.shields.io/github/stars/Blooym/YouDownloader.svg?style=for-the-badge" align="center" alt='Stars' >
 <!--Issues-->
-<img src="https://img.shields.io/github/issues/AngelNull/YouDownloader.svg?style=for-the-badge" align="center" alt='Issues' >
+<img src="https://img.shields.io/github/issues/Blooym/YouDownloader.svg?style=for-the-badge" align="center" alt='Issues' >
 
 # 
 <h2 align="center"> Preview </h2>
@@ -75,7 +75,7 @@ YouDownloader is a lightweight and easy to use YouTube downloader software, ran 
 
 ℹ **Youdownloader is currently only supported on Windows.** There are plans to test and support for other platforms later.
 
-Downloading and using YouDownloader is easy, simply download the [latest release](https://github.com/AngelNull/YouDownloader/releases) in either `.exe` format (supports *autoupdates*, installs on machine) or `.zip` format (lightweight, only runs from folder).
+Downloading and using YouDownloader is easy, simply download the [latest release](https://github.com/Blooym/YouDownloader/releases) in either `.exe` format (supports *autoupdates*, installs on machine) or `.zip` format (lightweight, only runs from folder).
 
 If you live on the edge, you can download the latest developer release which contains the latest version of YouDownloader, but may not be as stable but will have all new changes.
 
@@ -107,4 +107,4 @@ Please keep all commits in the pull request to the [commit convention](./.github
 Multiple jobs will be ran when a pull-request is made to ensure it is up to standards and builds correctly.
 
 # License
-📜 YouDownloader is licensed under the [**MIT** license](./LICENSE) (c) 2021 AngelNull.
+📜 YouDownloader is licensed under the [**MIT** license](./LICENSE) (c) 2021 Blooym.

@@ -1,21 +1,29 @@
 /* eslint-disable no-undef */
+
+/**
+ * Rewrite for this file is desparely needed, 
+ * this program is slow & command-line is faster currently.
+ * Processing times need to be fixed via full rewrite
+ */
+
+// ffmpeg
+const ffmpeg = require('fluent-ffmpeg');
 const ffmpegPath = require('ffmpeg-static');
+ffmpeg.setFfmpegPath(ffmpegPath);
+// Electron dialog support
 const { dialog } = require('@electron/remote');
+// Downloading & filesystem
 const fs = require('fs');
 const ytdl = require('ytdl-core');
-const ffmpeg = require('fluent-ffmpeg');
-ffmpeg.setFfmpegPath(ffmpegPath);
 
+// Fetch HTMl IDs
 const textInput = document.getElementById('urlinput');
 const videoFormat = document.getElementById('videofselect');
 const audioFormat = document.getElementById('audiofselect');
 const button = document.getElementsByName('button');
 
-/* ==========================================================================
-                              FUNCTIONS
-========================================================================== */
 
-//filter
+// Extract audio and video
 function filterVideoAudio(formats) {
     audiof = formats.filter((format) => format.audioBitrate != null);
     videof = formats.filter((format) => format.height != null);
@@ -25,7 +33,7 @@ function filterVideoAudio(formats) {
     return [videof, audiof, both];
 }
 
-// Merge File
+// Merge audio and video together
 async function mergeVideoAudio(filepaths, name) {
     var downloadpath = '';
 
@@ -66,7 +74,7 @@ async function mergeVideoAudio(filepaths, name) {
     video.run();
 }
 
-// Download File
+// Valdiate, download
 function videoAudioMerge(downloadpath, name, itagvideo, containerv, itagaudio, containera) {
     if (ytdl.validateURL(textInput.value)) {
         console.log('Validated URL');
@@ -118,7 +126,7 @@ function videoAudioMerge(downloadpath, name, itagvideo, containerv, itagaudio, c
     }
 }
 
-// GUI
+// Make options for GUI
 function makeOption(parent, value) {
     console.log(`Creating options: ${value}`);
     newoption = document.createElement('option');
@@ -127,13 +135,13 @@ function makeOption(parent, value) {
     parent.add(newoption);
 }
 
-// Events Listener
+// Event listeners
 textInput.addEventListener('input', async () => {
     console.log(`Registered Text Input: ${textInput.value}`);
     if (ytdl.validateURL(textInput.value)) {
-        // Fetch Video Info
+        // Fetch Video 
         let info = await ytdl.getInfo(textInput.value);
-        // Filter for audio
+        // Fetch Audio
         let formatsall = filterVideoAudio(info.formats);
         let formats = formatsall.filter((value) => {
             return !(value.hasaudio && value.hasvideo);
@@ -154,7 +162,7 @@ textInput.addEventListener('input', async () => {
         for (let i = 0; i < vquali_unique.length; i++) {
             makeOption(videoFormat, vquali_unique[i]);
         }
-        //display audio
+        // Display Options
         for (let i = 0; i < aquali_unique.length; i++) {
             makeOption(audioFormat, aquali_unique[i]);
         }

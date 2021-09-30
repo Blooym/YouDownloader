@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 
 /**
- * Rewrite for this file is desparely needed, 
+ * Rewrite for this file is desparely needed,
  * this program is slow & command-line is faster currently.
  * Processing times need to be fixed via full rewrite
  */
@@ -21,7 +21,6 @@ const textInput = document.getElementById('urlinput');
 const videoFormat = document.getElementById('videofselect');
 const audioFormat = document.getElementById('audiofselect');
 const button = document.getElementsByName('button');
-
 
 // Extract audio and video
 function filterVideoAudio(formats) {
@@ -139,7 +138,7 @@ function makeOption(parent, value) {
 textInput.addEventListener('input', async () => {
     console.log(`Registered Text Input: ${textInput.value}`);
     if (ytdl.validateURL(textInput.value)) {
-        // Fetch Video 
+        // Fetch Video
         let info = await ytdl.getInfo(textInput.value);
         // Fetch Audio
         let formatsall = filterVideoAudio(info.formats);
